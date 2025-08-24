@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import weatherImage from "../assets/weather-banner.png";
 import WeatherCard from "./WeatherCard";
-import { fetchWeatherData } from "../redux/features/weather/weatherSlice";
+import { clearWeatherData, fetchWeatherData } from "../redux/features/weather/weatherSlice";
 
 const Weather = () => {
   const { error, loading, weatherData } = useSelector((state) => state.weather);
@@ -50,6 +50,7 @@ const Weather = () => {
             Search Weather
           </button>
           <button
+          onClick={()=>dispatch(clearWeatherData())}
             type="button"
             className="px-4 py-2 bg-red-500 hover:bg-red-700 rounded-md text-white font-semibold cursor-pointer"
           >
