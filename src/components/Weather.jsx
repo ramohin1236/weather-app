@@ -74,7 +74,13 @@ const Weather = () => {
         <div>
             {
                 weatherData.map((data, index)=>(
-                    <WeatherCard key={index} data={data}/>
+                    <WeatherCard key={index} 
+                    temp={data.main.temp}
+                    main={data.weather[0].main}
+                    name={data.name}
+                    speed={data.wind.speed}
+
+                    />
                 ))
             }
         </div>
