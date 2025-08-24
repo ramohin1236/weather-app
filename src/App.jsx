@@ -1,3 +1,4 @@
+import Weather from "./components/Weather"
 
 
 function App() {
@@ -5,7 +6,7 @@ function App() {
 
   return (
     <>
-      <p>Hello developers</p>
+      <Weather/>
     </>
   )
 }
