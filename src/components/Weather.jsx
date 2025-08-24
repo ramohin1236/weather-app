@@ -1,11 +1,18 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import weatherImage from "../assets/weather-banner.png";
+import WeatherCard from "./WeatherCard";
+import { fetchWeatherData } from "../redux/features/weather/weatherSlice";
 
 const Weather = () => {
   const { error, loading, weatherData } = useSelector((state) => state.weather);
-  const handleSubmit = (e) => {
+  const dispatch = useDispatch();
+  const [city, setCity] = useState("");
+  console.log(city)
+  const handleFetchWeather = (e) => {
     e.preventDefault();
+    dispatch(fetchWeatherData(city));
+    setCity("");
   };
 
   return (
@@ -25,14 +32,17 @@ const Weather = () => {
         </div>
 
         {/* search weather form */}
-        <form className="my-6 flex flex-wrap gap-2 md:gap-4">
+        <form
+        onSubmit={handleFetchWeather}
+        className="my-6 flex flex-wrap gap-2 md:gap-4">
           <input
+          value={city}
+          onChange={(e) => setCity(e.target.value)}
             type="text"
             placeholder="enter city name"
             className="flex-grow p-2 border rounded "
           />
           <button
-            onClick={handleSubmit}
             type="submit"
             className="px-4 py-2 bg-blue-500 hover:bg-blue-700 rounded-md text-white font-semibold cursor-pointer"
           >
@@ -58,6 +68,14 @@ const Weather = () => {
               {error}
             </p>
           )}
+        </div>
+
+        <div>
+            {
+                weatherData.map((data, index)=>(
+                    <WeatherCard key={index} data={data}/>
+                ))
+            }
         </div>
       </div>
     </div>

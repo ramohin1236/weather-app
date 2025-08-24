@@ -9,7 +9,7 @@ const initialState = {
 };
 
 // fetch weather data
-const fetchWeatherData = createAsyncThunk(
+export const fetchWeatherData = createAsyncThunk(
   "weather/fetchWeatherData",
   async (cityName) => {
     const apikey = "eecdd84df021dcbffff99451a149fa02";
