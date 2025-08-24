@@ -8,9 +8,10 @@ const Weather = () => {
   const { error, loading, weatherData } = useSelector((state) => state.weather);
   const dispatch = useDispatch();
   const [city, setCity] = useState("");
-  console.log(city)
+
   const handleFetchWeather = (e) => {
     e.preventDefault();
+    if(city.trim() === "") return;
     dispatch(fetchWeatherData(city));
     setCity("");
   };

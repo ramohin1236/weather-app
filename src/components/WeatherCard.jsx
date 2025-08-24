@@ -1,6 +1,6 @@
-import React from 'react'
 
-const WeatherCard = () => {
+const WeatherCard = ({data}) => {
+    console.log(data)
   return (
     <div>WeatherCard</div>
   )
